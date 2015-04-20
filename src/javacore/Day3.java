@@ -41,20 +41,19 @@ public class Day3 {
     }
 
     private XMLConfiguration loadConfig(String filePath) {
-        XMLConfiguration config = null;
+        XMLConfiguration conf = null;
         try {
             Parameters params = new Parameters();
 
             FileBasedConfigurationBuilder<XMLConfiguration> builder
                     = new FileBasedConfigurationBuilder<XMLConfiguration>(XMLConfiguration.class)
-                    .configure(params.xml()
-                            .setFileName(filePath));
-            config = builder.getConfiguration();
+                    .configure(params.xml().setFileName(filePath));
+            conf = builder.getConfiguration();
 
         } catch (Exception ex) {
             System.out.print(ex.getMessage());
         }
-        return config;
+        return conf;
     }
 
     private List<String> getAllFilename(String inputDir) {
@@ -96,7 +95,7 @@ public class Day3 {
     private String processData(String input) {
         int transType = Integer.valueOf(input.substring(input.lastIndexOf("|") + 1));
         if (transType == 1) {
-            return input + "|" + config.getString(ConfigApp.TransValue);
+            return input + "|" + config.getString(ConfigApp.TRANS_VALUE);
         } else if (transType == 2) {
             return input + "|0";
         } else {
@@ -106,12 +105,12 @@ public class Day3 {
 
     public void processFiles() {
         config = loadConfig("configApp.xml");
-        List<String> files = getAllFilename(config.getString(ConfigApp.InputPath));
+        List<String> files = getAllFilename(config.getString(ConfigApp.INPUT_PATH));
 
         int countFile = files.size();
         for (int i = 0; i < countFile; i++) {
             List<String> output = processInputFile(files.get(i));
-            int outputRecord = config.getInt(ConfigApp.OutputRecord);
+            int outputRecord = config.getInt(ConfigApp.OUTPUT_RECORD);
             for (int j = 0; j < output.size(); j = j + outputRecord) {
                 if (output.size() >= j + outputRecord) {
                     processOutFile(output.subList(j, j + outputRecord));
@@ -197,7 +196,7 @@ public class Day3 {
 
     private String getNewFileName() {
         //output_yyyyMMddhhmmss_seq.txt
-        String folderPath = config.getString(ConfigApp.OutputPath) + "\\";
+        String folderPath = config.getString(ConfigApp.OUTPUT_PATH) + "\\";
         String currDate = df.format(Calendar.getInstance().getTime());
         return folderPath + "output_" + currDate + "_" + (index++) + ".txt";
     }
