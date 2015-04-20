@@ -39,7 +39,11 @@ public class Day3 {
 
     public Day3() {
     }
-
+    /**
+     * đọc file config.xml và lấy ra 4 giá trị cho vào 1 array
+     * @param filePath
+     * @return a XMLConfiguration instance
+     */
     private XMLConfiguration loadConfig(String filePath) {
         XMLConfiguration conf = null;
         try {
@@ -55,8 +59,13 @@ public class Day3 {
         }
         return conf;
     }
-
-    private List<String> getAllFilename(String inputDir) {
+    /**
+     * get all filenames of the input directory
+     *  input_dd_MM_yyyy_hh_mm.txt
+     * @param inputDir
+     * @return a list of filenames (string objects)
+     */
+    private List<String> getAllFilenames(String inputDir) {
         List<String> results = new ArrayList<>();
         //input_17_04_2015_10_5.txt
         File folder = new File(inputDir);
@@ -105,7 +114,7 @@ public class Day3 {
 
     public void processFiles() {
         config = loadConfig("configApp.xml");
-        List<String> files = getAllFilename(config.getString(ConfigApp.INPUT_PATH));
+        List<String> files = getAllFilenames(config.getString(ConfigApp.INPUT_PATH));
 
         int countFile = files.size();
         for (int i = 0; i < countFile; i++) {

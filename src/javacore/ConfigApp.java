@@ -11,9 +11,9 @@ package javacore;
  */
 public class ConfigApp {
 
-    public static String INPUT_PATH  = "input_path";
-    public static String OUTPUT_PATH  = "output_path";
-    public static String OUTPUT_RECORD  = "output_record";
-    public static String TRANS_VALUE  = "trans_value";
+    public static final String INPUT_PATH  = "input_path";
+    public static final String OUTPUT_PATH  = "output_path";
+    public static final String OUTPUT_RECORD  = "output_record";
+    public static final String TRANS_VALUE  = "trans_value";
 
 }
