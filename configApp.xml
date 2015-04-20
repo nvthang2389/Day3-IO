@@ -1,0 +1,6 @@
+<config>
+	<input_path>input</input_path>
+	<output_path>output</output_path>
+	<output_record>20</output_record>
+	<trans_value>25000</trans_value>
+</config>
